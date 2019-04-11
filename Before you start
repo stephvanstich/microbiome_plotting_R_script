@@ -61,3 +61,10 @@ map=import_qiime_sample_data(mapfile)
 
 testdata=merge_phyloseq(biomfile,tree,map)
 print(testdata)
+
+# note that you want to follow the different part of this script in the following order:
+(1) Before you Start
+
+(2) Prune the data
+(3) Tree
+(4)
