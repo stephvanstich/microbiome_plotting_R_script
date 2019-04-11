@@ -1,0 +1,63 @@
+#Welcome to the microbiome plot mapping script.
+
+#To start, you will need: a otu (otu_table_mc2_w_tax.biom), tree file(Rep_set.tre) and mapping files(AS_map.txt) from qiime analysis workflow.
+
+#You may need to convert your biom table in a json biom table. For that, at the end of qiime pipeline, in terminal(this only work in Qiime- old and new version):
+
+$ biom convert -i otu_table_mc2_w_tax.biom -o otujson.biom --table-type="OTU table" --to-json
+
+#Create a folder R in your Documents and copy and paste the following file: otujson.biom, AS_map.txt, Rep_set.tre
+
+#Open R studio and install the necessary packages:
+
+# to quickly install phyloseq:
+if(!requireNamespace("BiocManager")){install.packages("BiocManager")} 
+BiocManager::install("phyloseq")
+install.packages("plyr")
+install.packages("scales")
+install.packages("ggplot2")
+install.packages("Hmisc")
+install.packages("corrplot")
+
+
+#launch packages:
+library("phyloseq")
+library("ggplot2")
+library("scales")
+library("grid")
+library("plyr")
+library("Hmisc")
+library(corrplot)
+
+
+#Set environment:
+
+
+getwd()
+setwd("Documents/R")
+getwd()
+
+
+#Check the list of files imported in this folder
+
+list.files()
+
+
+#Set up a vector called colors for graphics:
+
+colors<-c("Control" = "#17202a", "ADI1x" = "#f39c12", "ADI2x" = "#e74c3c", "Taxa" = "#5499c7", "M" = "#035356", "P" = "#0fbec4")
+
+colorstaxa<-c("Anaeroplasmataceae" = "#fffe63" , "Erysipelotrichaceae" = "#6100fd", "Lachnospiraceae" = "#2c9ceb" , "Lactobacillaceae" = "#66cafd" , "Rikenellaceae" = "#19bf63" , "Ruminococcaceae" = "#0a5bb3" , "S24-7" = "#21fe80" , "Verrucomicrobiaceae" = "#fb006d")
+
+#Import file in phyloseq:
+
+otufile="otujson.biom"
+biomfile=import_biom(otufile,parseFunction=parse_taxonomy_greengenes)
+tree=read_tree("rep_set.tre")
+mapfile="AS_map.txt" 
+map=import_qiime_sample_data(mapfile)
+
+#Merge those file and call it "testdata":
+
+testdata=merge_phyloseq(biomfile,tree,map)
+print(testdata)
