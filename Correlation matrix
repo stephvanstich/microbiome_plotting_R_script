@@ -1,0 +1,95 @@
+
+
+Correlation
+
+#Prepare an otu_table_L6.txt using the attached template.
+
+#Import Out table:
+
+otu.table <- read.table("otu_table_L6.txt", header = TRUE, row.names = 1, check.names=F)
+
+#Correlation matrix:
+
+corr <- cor(otu.table, method= "spearman")
+corr.matrix.otu<- rcorr(as.matrix(otu.table))
+corr.matrix.otu
+
+#extract r value:
+
+r.value<-corr.matrix.otu$r
+p.value<-corr.matrix.otu$P
+
+
+#plot the correlation:
+
+pdf("Correlation btw otu mothers and pups.pdf")
+corrplot(corr, sig.level = 0.01, insig = "blank", tl.col = "black")
+dev.off()
+
+#Optional: make table with correlation matrix value r and P:
+
+flattenCorrMatrix <- function(cormat, pmat) {ut <-upper.tri(cormat)data.frame(row = rownames(cormat)[row(cormat)[ut]],column = rownames(cormat)[col(cormat)[ut]],cor  =(cormat)[ut],p = pmat[ut])}
+
+corr.matrix.otu.flatten<-flattenCorrMatrix(corr.matrix.otu$r, corr.matrix.otu$P)
+
+
+#Correlation btwn mothers and pups: 
+
+
+Ctrl.pups <- read.table ("control_otu_pups.txt",header = TRUE, row.names = 1, check.names=F)
+
+Ctrl.mothers<- read.table("control_otu_mothers.txt", header = TRUE, row.names = 1, check.names=F)
+
+ADI1x.pups <- read.table ("ADI1x_otu_pups.txt",header = TRUE, row.names = 1, check.names=F)
+
+ADI1x.mothers<- read.table("ADI1x_otu_mothers.txt", header = TRUE, row.names = 1, check.names=F)
+
+ADI2x.pups <- read.table ("ADI2x_otu_pups.txt",header = TRUE, row.names = 1, check.names=F)
+
+ADI2x.mothers<- read.table("ADI2x_otu_mothers.txt", header = TRUE, row.names = 1, check.names=F)
+
+
+#Correlation matrix:
+
+Ctrl.corr.microbiome <- cor(Ctrl.mothers, Ctrl.pups, method= "spearman")
+Ctrl.corr.matrix.microbiome<- rcorr(as.matrix(Ctrl.corr.microbiome))
+#Ctrl.corr.matrix.microbiome
+r.value.Ctrl<-Ctrl.corr.matrix.microbiome$r
+p.value.Ctrl<-Ctrl.corr.matrix.microbiome$P
+
+ADI1x.corr.microbiome <- cor(ADI1x.mothers, ADI1x.pups, method= "spearman")
+ADI1x.corr.matrix.microbiome<- rcorr(as.matrix(ADI1x.corr.microbiome))
+#ADI1x.corr.matrix.microbiome
+r.value.ADI1x<-ADI1x.corr.matrix.microbiome$r
+p.value.ADI1x<-ADI1x.corr.matrix.microbiome$P
+
+ADI2x.corr.microbiome <- cor(ADI2x.mothers, ADI2x.pups, method= "spearman")
+ADI2x.corr.matrix.microbiome<- rcorr(as.matrix(ADI2x.corr.microbiome))
+#ADI2x.corr.matrix.microbiome
+r.value.ADI2x<-ADI2x.corr.matrix.microbiome$r
+p.value.ADI2x<-ADI2x.corr.matrix.microbiome$P
+
+# plot the correlation:
+
+col <- colorRampPalette(c("#9c0000", "#EE9988", "#e0e4e0", "#77AADD", "#004d9b"))
+
+pdf("microbiome correlation Ctrl.pdf", width = 15, height = 15)
+corrplot(Ctrl.corr.microbiome, method = "color", sig.level = 0.01, insig = "blank", tl.col = "black", tl.cex = 2, p.mat = p.value.Ctrl, addCoef.col = "black", number.cex=0.75, na.label.col = "white", col=col(100))
+dev.off()
+
+pdf("microbiome correlation ADI1x.pdf", width = 15, height = 15)
+corrplot(ADI1x.corr.microbiome, method = "color", sig.level = 0.01, insig = "blank", tl.col = "black", tl.cex = 2, p.mat = p.value.ADI1x, addCoef.col = "black", number.cex=0.75, na.label.col = "white", col=col(100))
+dev.off()
+
+pdf("microbiome correlation ADI2x.pdf", width = 15, height = 15)
+corrplot(ADI2x.corr.microbiome, method = "color", sig.level = 0.01, insig = "blank", tl.col = "black", tl.cex = 2, p.mat = p.value.ADI2x, addCoef.col = "black", number.cex=0.75, na.label.col = "white", col=col(100))
+dev.off()
+
+
+corrplot(corr.plasma, sig.level = 0.01, insig = "blank", tl.col = "black")
+
+#Optional: make table with correlation matrix value r and P:
+
+flattenCorrMatrix <- function(cormat, pmat) {ut <-upper.tri(cormat)data.frame(row = rownames(cormat)[row(cormat)[ut]],column = rownames(cormat)[col(cormat)[ut]],cor  =(cormat)[ut],p = pmat[ut])}
+
+corr.matrix.otu.flatten<-flattenCorrMatrix(corr.matrix.otu$r, corr.matrix.otu$P)
