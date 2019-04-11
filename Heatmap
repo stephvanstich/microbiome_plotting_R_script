@@ -1,0 +1,10 @@
+
+#Plot heatmap:
+
+pdf("Mothers heatmap.pdf", width = 20)
+plot_heatmap(testdata.mothers, "NMDS", "bray", "Description", "Family", sample.order = "Description", taxa.order = "Phylum")
+dev.off()
+
+pdf("Pups heatmap.pdf", width = 20)
+plot_heatmap(testdata.pups, "NMDS", "bray", "Description", "Family", sample.order = "Description", taxa.order = "Phylum")
+dev.off()
