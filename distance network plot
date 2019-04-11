@@ -1,0 +1,14 @@
+#make distance network plot:
+
+
+ig = make_network(testdata.mothers, max.dist = 0.85)
+
+pdf("Mothers network.pdf", width = 20)
+plot_network(ig, testdata.mothers, color = "Description", line_weight = 0.4, label = NULL) + scale_colour_manual(values = colors)
+dev.off()
+
+ig = make_network(testdata.pups, max.dist = 0.85)
+
+pdf("Pups network.pdf", width = 20)
+plot_network(ig, testdata.pups, color = "Description", line_weight = 0.4, label = NULL) + scale_colour_manual(values = colors)
+dev.off()
