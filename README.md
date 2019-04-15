@@ -10,7 +10,8 @@ $ biom convert -i otu_table_mc2_w_tax.biom -o otujson.biom --table-type="OTU tab
 
 #Open R studio and install the necessary packages:
 
-# to quickly install phyloseq:
+To quickly install phyloseq:
+
 if(!requireNamespace("BiocManager")){install.packages("BiocManager")} 
 BiocManager::install("phyloseq")
 install.packages("plyr")
@@ -40,4 +41,4 @@ getwd()
 
 #Check the list of files imported in this folder
 
-list.files()
+$ list.files()
