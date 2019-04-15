@@ -126,6 +126,26 @@ pdf("pups alpha diversity observed.pdf", width = 10)
 plot_richness(testdata.pups, x = "Description", color = "Description", measures= "Observed") + geom_point(size=7, alpha=0.7) + scale_colour_manual(values = colors) + geom_boxplot(aes(fill = Description), alpha = 0.5,size = 1) +scale_fill_manual(values = colors) + theme(text = element_text(size=30)) +xlab("") + scale_x_discrete(limits=c("Control","ADI1x","ADI2x"))
 dev.off()
 ```
+
+**PCOA plot**
+
+Use raw data(testdata) or filtered data (filtertaxa100)
+```
+ordination.mothers = ordinate(testdata.mothers, method = "PCoA")
+```
+```
+pdf("PCoA mothers.pdf", width = 10)
+plot_ordination(testdata.mothers, ordination.mothers, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+ dev.off()
+```
+```
+ordination.pups = ordinate(testdata.pups, method = "PCoA")
+```
+```
+pdf("PCoA pups.pdf", width = 10)
+plot_ordination(testdata.pups, ordination.pups, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+dev.off()
+```
 **Correlation**
 
 Prepare an otu_table_L6.txt using the attached [template](otu_table_L6.txt).
@@ -164,22 +184,23 @@ plot_heatmap(Filtertaxa100.pups, "NMDS", "bray", "Description", "Class", sample.
 dev.off()
 ```
 
-**PCOA plot**
 
-Use raw data(testdata) or filtered data (filtertaxa100)
+
+**Distance network plot**
+
 ```
-ordination.mothers = ordinate(testdata.mothers, method = "PCoA")
-```
-```
-pdf("PCoA mothers.pdf", width = 10)
-plot_ordination(testdata.mothers, ordination.mothers, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
- dev.off()
+ig = make_network(testdata.mothers, max.dist = 0.85)
 ```
 ```
-ordination.pups = ordinate(testdata.pups, method = "PCoA")
+pdf("Mothers network.pdf", width = 20)
+plot_network(ig, testdata.mothers, color = "Description", line_weight = 0.4, label = NULL) + scale_colour_manual(values = colors)
+dev.off()
 ```
 ```
-pdf("PCoA pups.pdf", width = 10)
-plot_ordination(testdata.pups, ordination.pups, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+ig = make_network(testdata.pups, max.dist = 0.85)
+```
+```
+pdf("Pups network.pdf", width = 20)
+plot_network(ig, testdata.pups, color = "Description", line_weight = 0.4, label = NULL) + scale_colour_manual(values = colors)
 dev.off()
 ```
