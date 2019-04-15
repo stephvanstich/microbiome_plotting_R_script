@@ -49,6 +49,28 @@ Check the list of files imported in this folder
 list.files()
 ```
 
+Set up a vector called colors for graphics:
+```
+colors<-c("Control" = "#17202a", "ADI1x" = "#f39c12", "ADI2x" = "#e74c3c", "Taxa" = "#5499c7", "M" = "#035356", "P" = "#0fbec4")
+
+colorstaxa<-c("Anaeroplasmataceae" = "#fffe63" , "Erysipelotrichaceae" = "#6100fd", "Lachnospiraceae" = "#2c9ceb" , "Lactobacillaceae" = "#66cafd" , "Rikenellaceae" = "#19bf63" , "Ruminococcaceae" = "#0a5bb3" , "S24-7" = "#21fe80" , "Verrucomicrobiaceae" = "#fb006d")
+```
+Import file in phyloseq:
+
+```
+otufile="otujson.biom"
+biomfile=import_biom(otufile,parseFunction=parse_taxonomy_greengenes)
+tree=read_tree("rep_set.tre")
+mapfile="AS_map.txt" 
+map=import_qiime_sample_data(mapfile)
+```
+Merge those file and call it "testdata":
+
+```
+testdata=merge_phyloseq(biomfile,tree,map)
+print(testdata)
+```
+
 Here is the worflow that you can go through to visualise your data. Each of the sections are detailed below.
 
 - Make the Tree [mothers'tree](mothers_tree_top_50.pdf) [pups'tree](pups tree top 50.pdf)
@@ -56,3 +78,4 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Plotting the beta-diversity (PCoA plot)(see example for [mothers'](../PCoA mothers.pdf) or [pups'](../PCoA pups.pdf))
 - Mapping the Network maps (see example for [mothers'](../Mothers networks.pdf) or [pups'](../Pups network.pdf))
 - Mapping the coorelation (see example [here](Correlation btw otu mothers and pups.pdf))
+
