@@ -1,0 +1,14 @@
+#SampleID	BarcodeSequence	LinkerPrimerSequence	Description	sampleIDseq	Description2
+#map for Out					
+a44			ADI1x	a44	M
+a441			ADI1x	a441	P
+a442			ADI1x	a442	P
+a443			ADI1x	a443	P
+a48			ADI2x	a48	M
+a482			ADI2x	a482	P
+a483			ADI2x	a483	P
+a484			ADI2x	a484	P
+a49			Control	a49	M
+a491			Control	a491	P
+a492			Control	a492	P
+a493			Control	a493	P
