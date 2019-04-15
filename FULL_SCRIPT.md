@@ -79,7 +79,7 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Plotting the [beta-diversity](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#pcoa-plot)(PCoA plot)(see example for [mothers](PCoA_mothers.pdf) or [pups](PCoA_pups.pdf))
 - Mapping the [coorelation](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#correlation) (see example [here](correlation_otu.pdf))
 - Drawing a [heatmap](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#heatmap) (see examples for [mothers](heatmap_mothers.pdf) & [pups](heatmap_pups.pdf))
-- Mapping the diversity network (see example for [mothers](network_mothers.pdf) & [pups](network_pups.pdf))
+- Mapping the diversity [network](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#distance-network-plot) (see example for [mothers](network_mothers.pdf) & [pups](network_pups.pdf))
 
 
 ## **Pruning the data**
