@@ -127,3 +127,23 @@ pdf("Pups heatmap.pdf", width = 20)
 plot_heatmap(Filtertaxa100.pups, "NMDS", "bray", "Description", "Class", sample.order = "Description", taxa.order = "Phylum")
 dev.off()
 ```
+
+**PCOA plot**
+
+Use raw data(testdata) or filtered data (filtertaxa100)
+```
+ordination.mothers = ordinate(testdata.mothers, method = "PCoA")
+```
+```
+pdf("PCoA mothers.pdf", width = 10)
+plot_ordination(testdata.mothers, ordination.mothers, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+ dev.off()
+```
+```
+ordination.pups = ordinate(testdata.pups, method = "PCoA")
+```
+```
+pdf("PCoA pups.pdf", width = 10)
+plot_ordination(testdata.pups, ordination.pups, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+dev.off()
+```
