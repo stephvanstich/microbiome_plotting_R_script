@@ -2,7 +2,7 @@
 
 To start, you will need the following files from Qiime analysis workflow:
 
-- An otu table with tqaxa [link to otu_table_mc2_w_tax.biom](./otujson.biom.zip)
+- An otu table with tqaxa [link to otu_table_mc2_w_tax.biom](./otujson.biom.zip) (if you are downloading it from this set of data, unzip it ;-) )
 - A tree file [link to Rep_set.tre](./rep_set.tre)
 - A mapping files[link to AS_map.txt](./AS_map.txt)
 
