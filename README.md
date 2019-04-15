@@ -1,6 +1,10 @@
-Welcome to the microbiome plot mapping script.
+**Welcome to the microbiome plot mapping script**
 
-To start, you will need: a otu (otu_table_mc2_w_tax.biom), tree file(Rep_set.tre) and mapping files(AS_map.txt) from qiime analysis workflow.
+To start, you will need the following files from Qiime analysis workflow:
+
+- an otu files (./otu_table_mc2_w_tax.biom)
+- tree file(./Rep_set.tre)
+- mapping files(./AS_map.txt)
 
 You may need to convert your biom table in a json biom table. For that, at the end of qiime pipeline, in terminal(this only work in Qiime- old and new version):
 ```
