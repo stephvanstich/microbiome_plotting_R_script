@@ -70,14 +70,17 @@ Merge those file and call it "testdata":
 testdata=merge_phyloseq(biomfile,tree,map)
 print(testdata)
 ```
+## What can you do?
 
 Here is the worflow that you can go through to visualise your data. Each of the sections are detailed below.
 
-- Making the Tree (see examples for [mothers'](tree_mothers.pdf) & [pups'](tree_pups.pdf))
-- Plotting the alpha-diversity (see example for [mothers'](alpha_diversity_mothers.pdf) & [pups'](alpha_diversity_pups.pdf))
-- Plotting the beta-diversity (PCoA plot)(see example for [mothers'](PCoA_mothers.pdf) or [pups'](PCoA_pups.pdf))
-- Mapping the diversity network (see example for [mothers'](network_mothers.pdf) or [pups'](network_pups.pdf))
+- Making the Tree (see examples for [mothers](tree_mothers.pdf) & [pups](tree_pups.pdf))
+- Plotting the alpha-diversity (see example for [mothers](alpha_diversity_mothers.pdf) & [pups](alpha_diversity_pups.pdf))
+- Plotting the beta-diversity (PCoA plot)(see example for [mothers](PCoA_mothers.pdf) or [pups](PCoA_pups.pdf))
 - Mapping the coorelation (see example [here](correlation_otu.pdf))
+- Drawing a heatmap (see examples for [mothers](heatmap_mothers.pdf) & [pups](heatmap_pups.pdf))
+- Mapping the diversity network (see example for [mothers](network_mothers.pdf) & [pups](network_pups.pdf))
+
 
 ## **Pruning the data**
 ```
