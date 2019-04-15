@@ -116,3 +116,14 @@ pdf("Correlation btw otu mothers and pups.pdf")
 corrplot(corr, sig.level = 0.01, insig = "blank", tl.col = "black")
 dev.off()
 ```
+**Heatmap**
+```
+pdf("Mothers heatmap.pdf", width = 20)
+plot_heatmap(Filtertaxa100.mothers, "NMDS", "bray", "Description", "Class", sample.order = "Description", taxa.order = "Phylum")
+dev.off()
+```
+```
+pdf("Pups heatmap.pdf", width = 20)
+plot_heatmap(Filtertaxa100.pups, "NMDS", "bray", "Description", "Class", sample.order = "Description", taxa.order = "Phylum")
+dev.off()
+```
