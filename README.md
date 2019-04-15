@@ -104,6 +104,17 @@ ntaxa(testdata)
 ntaxa(Filtertaxa100.mothers)
 ```
 
+**Tree**
+```
+pdf("mothers tree top 50.pdf", width = 20)
+plot_tree(Filtertaxa50.mothers, nodelabf =  nodeplotblank, color = "Description", label.tips = "Family", shape= "Phylum", plot.margin = 0.1, ladderize = TRUE) + scale_colour_manual(values = colors)
+dev.off()
+```
+```
+pdf("pups tree top 50.pdf", width = 20)
+plot_tree(Filtertaxa50.pups, nodelabf =  nodeplotblank, color = "Description", label.tips = "Family", shape= "Phylum", plot.margin = 0.1, ladderize = TRUE) + scale_colour_manual(values = colors)
+dev.off()
+```
 **alpha diversity**
 ```
 pdf("mothers alpha diversity observed.pdf", width = 10)
