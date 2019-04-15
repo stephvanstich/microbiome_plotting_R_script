@@ -1,4 +1,4 @@
-# **Welcome to the microbiome plot mapping script**
+# **Welcome to the microbiome plotting script**
 
 To start, you will need the following files from Qiime analysis workflow:
 
