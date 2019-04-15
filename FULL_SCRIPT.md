@@ -77,7 +77,7 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Making the [Tree](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#tree) (see examples for [mothers](tree_mothers.pdf) & [pups](tree_pups.pdf))
 - Plotting the [alpha-diversity](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#alpha-diversity-observed) (see example for [mothers](alpha_diversity_mothers.pdf) & [pups](alpha_diversity_pups.pdf))
 - Plotting the [beta-diversity](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#pcoa-plot)(PCoA plot)(see example for [mothers](PCoA_mothers.pdf) or [pups](PCoA_pups.pdf))
-- Mapping the coorelation (see example [here](correlation_otu.pdf))
+- Mapping the [coorelation](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#correlation) (see example [here](correlation_otu.pdf))
 - Drawing a heatmap (see examples for [mothers](heatmap_mothers.pdf) & [pups](heatmap_pups.pdf))
 - Mapping the diversity network (see example for [mothers](network_mothers.pdf) & [pups](network_pups.pdf))
 
@@ -118,7 +118,7 @@ pdf("pups tree top 50.pdf", width = 20)
 plot_tree(Filtertaxa50.pups, nodelabf =  nodeplotblank, color = "Description", label.tips = "Family", shape= "Phylum", plot.margin = 0.1, ladderize = TRUE) + scale_colour_manual(values = colors)
 dev.off()
 ```
-## **alpha diversity (Observed)**
+## **Alpha-diversity (Observed)**
 ```
 pdf("mothers alpha diversity observed.pdf", width = 10)
 plot_richness(testdata.mothers, x = "Description", color = "Description", measures= "Observed") + geom_point(size=7, alpha=0.7) + scale_colour_manual(values = colors) + geom_boxplot(aes(fill = Description), alpha = 0.5,size = 1) +scale_fill_manual(values = colors) + theme(text = element_text(size=30)) +xlab("")+      scale_x_discrete(limits=c("Control","ADI1x","ADI2x"))
