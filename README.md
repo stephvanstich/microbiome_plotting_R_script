@@ -4,7 +4,7 @@ To start, you will need the following files from Qiime analysis workflow:
 
 - An otu table with tqaxa [otu_table_mc2_w_tax.biom](./otujson.biom.zip) (if you are downloading it from this set of data, unzip it ;-) )
 - A tree file [Rep_set.tre](./rep_set.tre)
-- A mapping files[AS_map.txt](./AS_map.txt)
+- A mapping files [AS_map.txt](./AS_map.txt)
 
 You may need to convert your biom table in a json biom table. For that, at the end of qiime pipeline, in terminal(this only work in Qiime- old and new version):
 ```
@@ -49,5 +49,10 @@ Check the list of files imported in this folder
 list.files()
 ```
 
-Now you can play with the data:
-- Make the tree by first [Pruning the Data](./Prune the data) and [Make the Tree](./Tree)
+Here is the worflow that you can go through to visualise your data. Each of the sections are detailed below.
+
+- Make the Tree (see example for [mothers' tree](./mothers tree top 50.pdf) or [pups'tree](./pups tree top 50.pdf)
+- Plotting the alpha-diversity (see example for [mothers'](./mothers alpha diversity observed.pdf) or [pups'](./pups alpha diversity observed.pdf)
+- Plotting the beta-diversity (PCoA plot)(see example for [mothers'](./PCoA mothers.pdf) or [pups'](./PCoA pups.pdf)
+- Mapping the Network maps (see example for [mothers'](./Mothers networks.pdf) or [pups'](./Pups network.pdf)
+- Mapping the coorelation (see example [here](Correlation btw otu mothers and pups.pdf)
