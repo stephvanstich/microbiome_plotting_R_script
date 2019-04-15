@@ -1,4 +1,4 @@
-#**Welcome to the microbiome plot mapping script**
+# **Welcome to the microbiome plot mapping script**
 
 To start, you will need the following files from Qiime analysis workflow:
 
@@ -55,7 +55,7 @@ colors<-c("Control" = "#17202a", "ADI1x" = "#f39c12", "ADI2x" = "#e74c3c", "Taxa
 
 colorstaxa<-c("Anaeroplasmataceae" = "#fffe63" , "Erysipelotrichaceae" = "#6100fd", "Lachnospiraceae" = "#2c9ceb" , "Lactobacillaceae" = "#66cafd" , "Rikenellaceae" = "#19bf63" , "Ruminococcaceae" = "#0a5bb3" , "S24-7" = "#21fe80" , "Verrucomicrobiaceae" = "#fb006d")
 ```
-##Import file in phyloseq:
+## **Import file in phyloseq**
 
 ```
 otufile="otujson.biom"
@@ -79,7 +79,7 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Mapping the diversity network (see example for [mothers'](network_mothers.pdf) or [pups'](network_pups.pdf))
 - Mapping the coorelation (see example [here](correlation_otu.pdf))
 
-##**Prune the data to get only Mothers**
+## **Prune the data to get only Mothers**
 ```
 testdata.mothers= subset_samples(testdata, Description2!="P")
 ```
@@ -104,7 +104,7 @@ ntaxa(testdata)
 ntaxa(Filtertaxa100.mothers)
 ```
 
-##**Tree**
+## **Tree**
 ```
 pdf("mothers tree top 50.pdf", width = 20)
 plot_tree(Filtertaxa50.mothers, nodelabf =  nodeplotblank, color = "Description", label.tips = "Family", shape= "Phylum", plot.margin = 0.1, ladderize = TRUE) + scale_colour_manual(values = colors)
@@ -115,7 +115,7 @@ pdf("pups tree top 50.pdf", width = 20)
 plot_tree(Filtertaxa50.pups, nodelabf =  nodeplotblank, color = "Description", label.tips = "Family", shape= "Phylum", plot.margin = 0.1, ladderize = TRUE) + scale_colour_manual(values = colors)
 dev.off()
 ```
-##**alpha diversity (Observed)**
+## **alpha diversity (Observed)**
 ```
 pdf("mothers alpha diversity observed.pdf", width = 10)
 plot_richness(testdata.mothers, x = "Description", color = "Description", measures= "Observed") + geom_point(size=7, alpha=0.7) + scale_colour_manual(values = colors) + geom_boxplot(aes(fill = Description), alpha = 0.5,size = 1) +scale_fill_manual(values = colors) + theme(text = element_text(size=30)) +xlab("")+      scale_x_discrete(limits=c("Control","ADI1x","ADI2x"))
@@ -127,7 +127,7 @@ plot_richness(testdata.pups, x = "Description", color = "Description", measures=
 dev.off()
 ```
 
-##**PCOA plot**
+## **PCOA plot**
 
 Use raw data(testdata) or filtered data (filtertaxa100)
 ```
@@ -146,7 +146,7 @@ pdf("PCoA pups.pdf", width = 10)
 plot_ordination(testdata.pups, ordination.pups, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
 dev.off()
 ```
-##**Correlation**
+## **Correlation**
 
 Prepare an otu_table_L6.txt using the attached [template](otu_table_L6.txt).
 
@@ -172,7 +172,7 @@ pdf("Correlation btw otu mothers and pups.pdf")
 corrplot(corr, sig.level = 0.01, insig = "blank", tl.col = "black")
 dev.off()
 ```
-##**Heatmap**
+## **Heatmap**
 ```
 pdf("Mothers heatmap.pdf", width = 20)
 plot_heatmap(Filtertaxa100.mothers, "NMDS", "bray", "Description", "Class", sample.order = "Description", taxa.order = "Phylum")
@@ -184,7 +184,7 @@ plot_heatmap(Filtertaxa100.pups, "NMDS", "bray", "Description", "Class", sample.
 dev.off()
 ```
 
-##**Distance network plot**
+## **Distance network plot**
 
 ```
 ig = make_network(testdata.mothers, max.dist = 0.85)
