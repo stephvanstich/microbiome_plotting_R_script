@@ -25,27 +25,3 @@ p.value<-corr.matrix.otu$P
 pdf("Correlation btw otu mothers and pups.pdf")
 corrplot(corr, sig.level = 0.01, insig = "blank", tl.col = "black")
 dev.off()
-
-#Correlation btwn mothers and pups:(in that case you will need to separate your =otu_table/treatment)
-
-Ctrl.pups <- read.table ("control_otu_pups.txt",header = TRUE, row.names = 1, check.names=F)
-
-Ctrl.mothers<- read.table("control_otu_mothers.txt", header = TRUE, row.names = 1, check.names=F)
-
-
-#Correlation matrix:
-
-Ctrl.corr.microbiome <- cor(Ctrl.mothers, Ctrl.pups, method= "spearman")
-Ctrl.corr.matrix.microbiome<- rcorr(as.matrix(Ctrl.corr.microbiome))
-#Ctrl.corr.matrix.microbiome
-r.value.Ctrl<-Ctrl.corr.matrix.microbiome$r
-p.value.Ctrl<-Ctrl.corr.matrix.microbiome$P
-
-
-# plot the correlation:
-
-col <- colorRampPalette(c("#9c0000", "#EE9988", "#e0e4e0", "#77AADD", "#004d9b"))
-
-pdf("microbiome correlation Ctrl.pdf", width = 15, height = 15)
-corrplot(Ctrl.corr.microbiome, method = "color", sig.level = 0.01, insig = "blank", tl.col = "black", tl.cex = 2, p.mat = p.value.Ctrl, addCoef.col = "black", number.cex=0.75, na.label.col = "white", col=col(100))
-dev.off()
