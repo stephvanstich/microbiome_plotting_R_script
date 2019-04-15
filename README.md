@@ -90,3 +90,29 @@ pdf("pups alpha diversity observed.pdf", width = 10)
 plot_richness(testdata.pups, x = "Description", color = "Description", measures= "Observed") + geom_point(size=7, alpha=0.7) + scale_colour_manual(values = colors) + geom_boxplot(aes(fill = Description), alpha = 0.5,size = 1) +scale_fill_manual(values = colors) + theme(text = element_text(size=30)) +xlab("") + scale_x_discrete(limits=c("Control","ADI1x","ADI2x"))
 dev.off()
 ```
+**Correlation**
+
+Prepare an otu_table_L6.txt using the attached [template](otu_table_L6.txt).
+
+Import Out table:
+```
+otu.table <- read.table("otu_table_L6.txt", header = TRUE, row.names = 1, check.names=F)
+```
+Correlation matrix:
+```
+corr <- cor(otu.table, method= "spearman")
+corr.matrix.otu<- rcorr(as.matrix(otu.table))
+corr.matrix.otu
+```
+Extract r value:
+```
+r.value<-corr.matrix.otu$r
+p.value<-corr.matrix.otu$P
+```
+
+Plot the correlation:
+```
+pdf("Correlation btw otu mothers and pups.pdf")
+corrplot(corr, sig.level = 0.01, insig = "blank", tl.col = "black")
+dev.off()
+```
