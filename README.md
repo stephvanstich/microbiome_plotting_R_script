@@ -55,4 +55,4 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Plotting the alpha-diversity (see example for [mothers'](../mothers alpha diversity observed.pdf) or [pups'](../pups alpha diversity observed.pdf))
 - Plotting the beta-diversity (PCoA plot)(see example for [mothers'](../PCoA mothers.pdf) or [pups'](../PCoA pups.pdf))
 - Mapping the Network maps (see example for [mothers'](../Mothers networks.pdf) or [pups'](../Pups network.pdf))
-- Mapping the coorelation (see example [here](../Correlation btw otu mothers and pups.pdf))
+- Mapping the coorelation (see example [here](Correlation btw otu mothers and pups.pdf))
