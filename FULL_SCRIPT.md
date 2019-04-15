@@ -79,7 +79,7 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Mapping the diversity network (see example for [mothers'](network_mothers.pdf) or [pups'](network_pups.pdf))
 - Mapping the coorelation (see example [here](correlation_otu.pdf))
 
-## **Prune the data to get only Mothers**
+## **Pruning the data**
 ```
 testdata.mothers= subset_samples(testdata, Description2!="P")
 ```
