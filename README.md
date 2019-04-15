@@ -79,6 +79,31 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Mapping the Network maps (see example for [mothers'](../Mothers networks.pdf) or [pups'](../Pups network.pdf))
 - Mapping the coorelation (see example [here](Correlation btw otu mothers and pups.pdf))
 
+**Prune the data to get only Mothers**
+```
+testdata.mothers= subset_samples(testdata, Description2!="P")
+```
+Prune the data to get only Pups
+```
+testdata.pups= subset_samples(testdata, Description2!="M")
+```
+
+Prune the data to get only the 100/50 more abundant taxa in the OTU (use for rest)
+```
+Filtertaxa100.mothers=prune_taxa(names(sort(taxa_sums(testdata.mothers), TRUE)[1:100]), testdata.mothers)
+
+Filtertaxa100.pups=prune_taxa(names(sort(taxa_sums(testdata.pups), TRUE)[1:100]), testdata.pups)
+
+Filtertaxa50.mothers=prune_taxa(names(sort(taxa_sums(testdata.mothers), TRUE)[1:50]), testdata.mothers)
+
+Filtertaxa50.pups=prune_taxa(names(sort(taxa_sums(testdata.pups), TRUE)[1:50]), testdata.pups)
+```
+Compare the number of taxa of your original table(testdata) vs new pruned  table(Filtertaxa):
+```
+ntaxa(testdata)
+ntaxa(Filtertaxa100.mothers)
+```
+
 **alpha diversity**
 ```
 pdf("mothers alpha diversity observed.pdf", width = 10)
