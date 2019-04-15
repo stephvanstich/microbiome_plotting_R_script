@@ -74,7 +74,7 @@ print(testdata)
 
 Here is the worflow that you can go through to visualise your data. Each of the sections are detailed below.
 
-- Making the [Tree](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#tree) (see examples for [mothers](tree_mothers.pdf) & [pups](tree_pups.pdf))
+- Making the [tree](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#tree) (see examples for [mothers](tree_mothers.pdf) & [pups](tree_pups.pdf))
 - Plotting the [alpha-diversity](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#alpha-diversity-observed) (see example for [mothers](alpha_diversity_mothers.pdf) & [pups](alpha_diversity_pups.pdf))
 - Plotting the [beta-diversity](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#pcoa-plot)(PCoA plot)(see example for [mothers](PCoA_mothers.pdf) or [pups](PCoA_pups.pdf))
 - Mapping the [coorelation](https://github.com/stephvanstich/microbiome_plotting_R_script/blob/master/FULL_SCRIPT.md#correlation) (see example [here](correlation_otu.pdf))
