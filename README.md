@@ -79,3 +79,14 @@ Here is the worflow that you can go through to visualise your data. Each of the 
 - Mapping the Network maps (see example for [mothers'](../Mothers networks.pdf) or [pups'](../Pups network.pdf))
 - Mapping the coorelation (see example [here](Correlation btw otu mothers and pups.pdf))
 
+**alpha diversity**
+```
+pdf("mothers alpha diversity observed.pdf", width = 10)
+plot_richness(testdata.mothers, x = "Description", color = "Description", measures= "Observed") + geom_point(size=7, alpha=0.7) + scale_colour_manual(values = colors) + geom_boxplot(aes(fill = Description), alpha = 0.5,size = 1) +scale_fill_manual(values = colors) + theme(text = element_text(size=30)) +xlab("")+      scale_x_discrete(limits=c("Control","ADI1x","ADI2x"))
+dev.off()
+```
+```
+pdf("pups alpha diversity observed.pdf", width = 10)
+plot_richness(testdata.pups, x = "Description", color = "Description", measures= "Observed") + geom_point(size=7, alpha=0.7) + scale_colour_manual(values = colors) + geom_boxplot(aes(fill = Description), alpha = 0.5,size = 1) +scale_fill_manual(values = colors) + theme(text = element_text(size=30)) +xlab("") + scale_x_discrete(limits=c("Control","ADI1x","ADI2x"))
+dev.off()
+```
