@@ -2,9 +2,9 @@
 
 To start, you will need the following files from Qiime analysis workflow:
 
-- An otu table with tqaxa [link to otu_table_mc2_w_tax.biom](otu_table_mc2_w_tax.biom)
-- A tree file [link to Rep_set.tre](Rep_set.tre)
-- A mapping files[link to AS_map.txt](AS_map.txt)
+- An otu table with tqaxa [link to otu_table_mc2_w_tax.biom](./otu_table_mc2_w_tax.biom)
+- A tree file [link to Rep_set.tre](./Rep_set.tre)
+- A mapping files[link to AS_map.txt](./AS_map.txt)
 
 You may need to convert your biom table in a json biom table. For that, at the end of qiime pipeline, in terminal(this only work in Qiime- old and new version):
 ```
