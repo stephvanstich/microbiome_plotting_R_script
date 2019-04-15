@@ -51,7 +51,7 @@ list.files()
 
 Here is the worflow that you can go through to visualise your data. Each of the sections are detailed below.
 
-- Make the Tree [mothers' tree](mothers tree top 50.pdf) [pups'tree](pups tree top 50.pdf)
+- Make the Tree [mothers'tree](mothers_tree_top_50.pdf) [pups'tree](pups tree top 50.pdf)
 - Plotting the alpha-diversity (see example for [mothers'](../mothers alpha diversity observed.pdf) or [pups'](../pups alpha diversity observed.pdf))
 - Plotting the beta-diversity (PCoA plot)(see example for [mothers'](../PCoA mothers.pdf) or [pups'](../PCoA pups.pdf))
 - Mapping the Network maps (see example for [mothers'](../Mothers networks.pdf) or [pups'](../Pups network.pdf))
