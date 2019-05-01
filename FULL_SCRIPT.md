@@ -193,21 +193,26 @@ plot_ordination(testdata.pups, ordination.pups.wunifrac, type = "SampleID", colo
 ```
 uunifrac.distance.mothers<-distance(testdata.mothers, "uunifrac")
 uunifrac.mothers <-data.frame(sample_data(testdata.mothers))
-Adonis.mothers.uunifrac <- adonis(uunifrac.distance.mothers ~ Description, data = uunifrac.mothers)
+Adonis.mothers.uunifrac <- adonis(uunifrac.distance.mothers ~ Description, data = uunifrac.mothers, value="aov.tab")
+write.table(Adonis.mothers.uunifrac$aov.tab, "Adonis mothers uunifrac.txt" ,sep="\t")
 
 wunifrac.distance.mothers<-distance(testdata.mothers, "wunifrac")
 wunifrac.mothers <-data.frame(sample_data(testdata.mothers))
-Adonis.mothers.wunifrac <- adonis(wunifrac.distance.mothers ~ Description, data = wunifrac.mothers)
+Adonis.mothers.wunifrac <- adonis(wunifrac.distance.mothers ~ Description, data = wunifrac.mothers, value="aov.tab")
+write.table(Adonis.mothers.wunifrac$aov.tab, "Adonis mothers wunifrac.txt" ,sep="\t")
 ```
-
 ```
 uunifrac.distance.pups<-distance(testdata.pups, "uunifrac")
 uunifrac.pups <-data.frame(sample_data(testdata.pups))
-Adonis.pups.uunifrac <- adonis(uunifrac.distance.pups ~ Description, data = uunifrac.pups)
+Adonis.pups.uunifrac <- adonis(uunifrac.distance.pups ~ Description, data = uunifrac.pups, value="aov.tab")
+write.table(Adonis.pups.uunifrac$aov.tab, "Adonis pups uunifrac.txt" ,sep="\t")
+
+
 
 wunifrac.distance.pups<-distance(testdata.pups, "wunifrac")
 wunifrac.pups <-data.frame(sample_data(testdata.pups))
-Adonis.pups.wunifrac <- adonis(wunifrac.distance.pups ~ Description, data = wunifrac.pups)
+Adonis.pups.wunifrac <- adonis(wunifrac.distance.pups ~ Description, data = wunifrac.pups, value="aov.tab")
+write.table(Adonis.pups.wunifrac$aov.tab, "Adonis pups wunifrac.txt" ,sep="\t")
 ```
 
 ## **Correlation**
