@@ -129,26 +129,87 @@ pdf("pups alpha diversity observed.pdf", width = 10)
 plot_richness(testdata.pups, x = "Description", color = "Description", measures= "Observed") + geom_point(size=7, alpha=0.7) + scale_colour_manual(values = colors) + geom_boxplot(aes(fill = Description), alpha = 0.5,size = 1) +scale_fill_manual(values = colors) + theme(text = element_text(size=30)) +xlab("") + scale_x_discrete(limits=c("Control","ADI1x","ADI2x"))
 dev.off()
 ```
+## **significance of alpha diversity(kruskal-Wallis)**
+
+```
+alphadivmothers<-estimate_richness(testdata.mothers,measures= "Observed")
+alphadivpups<-estimate_richness(testdata.pups,measures= "Observed")
+```
+```
+observedmothers_Ctrl_ADI1x<-subset(observedmothers, Treatment!= "ADI2x")
+observedmothers_Ctrl_ADI2x<-subset(observedmothers, Treatment!= "ADI1x")
+observedpups_Ctrl_ADI1x<-subset(observedpups, Treatment!= "ADI2x")
+observedpups_Ctrl_ADI2x<-subset(observedpups, Treatment!= "ADI1x")
+```
+```
+KW_Observed_pups_ADI1x_Ctrl<- kruskal.test(Observed ~ Treatment, data = observedpups_Ctrl_ADI1x)
+KW_Observed_pups_ADI2x_Ctrl<- kruskal.test(Observed ~ Treatment, data = observedpups_Ctrl_ADI2x)
+KW_Observed_mothers_ADI1x_Ctrl<- kruskal.test(Observed ~ Treatment, data = observedmothers_Ctrl_ADI1x)
+KW_Observed_mothers_ADI2x_Ctrl<- kruskal.test(Observed ~ Treatment, data = observedmothers_Ctrl_ADI2x)
+
+KW_Test_results<-c(KW_Observed_pups_ADI1x_Ctrl$p.value, KW_Observed_pups_ADI2x_Ctrl$p.value, KW_Observed_mothers_ADI1x_Ctrl$p.value, KW_Observed_mothers_ADI2x_Ctrl$p.value)
+
+KW_Test_sample<- c("KW_Observed_pups_ADI1x_Ctrl", "KW_Observed_pups_ADI2x_Ctrl", "KW_Observed_mothers_ADI1x_Ctrl", "KW_Observed_mothers_ADI2x_Ctrl")
+
+KW_result_mothers_pups<- data.frame(KW_Test_sample, KW_Test_results)
+KW_result_mothers_pups$pvalueSignificance <-ifelse(KW_result_mothers_pups $KW_Test_results>0.05, "ns",(ifelse(KW_result_mothers_pups $KW_Test_results<0.001, "****",(ifelse(KW_result_mothers_pups $KW_Test_results<0.005, "***", (ifelse(KW_result_mothers_pups $KW_Test_results<0.01, "**", (ifelse(KW_result_mothers_pups $KW_Test_results<0.05, "*", "-"))))))))) 
+
+write.table(KW_result_mothers_pups,"KW_result_nothers and pups alpha diversity.txt",sep="\t")
+```
+
 
 ## **Beta-diverstity (PCoA plot)**
 
 Use raw data(testdata) or filtered data (filtertaxa100)
 ```
-ordination.mothers = ordinate(testdata.mothers, method = "PCoA")
+ordination.mothers.wunifrac = ordinate(testdata.mothers, method = "PCoA", "unifrac", weighted=TRUE)
+ordination.mothers.uunifrac = ordinate(testdata.mothers, method = "PCoA", "unifrac", weighted=FALSE)
+```
+
+```
+pdf("Uunifrac PCoA mothers.pdf", width = 10)
+plot_ordination(testdata.mothers, ordination.mothers.uunifrac, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+dev.off()
+ 
+pdf("Wunifrac PCoA mothers.pdf", width = 10)
+plot_ordination(testdata.mothers, ordination.mothers.wunifrac, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+dev.off()
+
 ```
 ```
-pdf("PCoA mothers.pdf", width = 10)
-plot_ordination(testdata.mothers, ordination.mothers, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+ordination.pups.wunifrac = ordinate(testdata.pups, method = "PCoA", "unifrac", weighted=TRUE)
+
+ordination.pups.uunifrac = ordinate(testdata.pups, method = "PCoA", "unifrac", weighted=FALSE)
+```
+```
+pdf("Uunifrac PCoA pups.pdf", width = 10)
+plot_ordination(testdata.pups, ordination.pups.uunifrac, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
+ dev.off()
+pdf("Wunifrac PCoA pups.pdf", width = 10)
+plot_ordination(testdata.pups, ordination.pups.wunifrac, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
  dev.off()
 ```
+## **ADONIS on beta-diverstity (weighted and unweighted unifrac and PcoA)**
 ```
-ordination.pups = ordinate(testdata.pups, method = "PCoA")
+uunifrac.distance.mothers<-distance(testdata.mothers, "uunifrac")
+uunifrac.mothers <-data.frame(sample_data(testdata.mothers))
+Adonis.mothers.uunifrac <- adonis(uunifrac.distance.mothers ~ Description, data = uunifrac.mothers)
+
+wunifrac.distance.mothers<-distance(testdata.mothers, "wunifrac")
+wunifrac.mothers <-data.frame(sample_data(testdata.mothers))
+Adonis.mothers.wunifrac <- adonis(wunifrac.distance.mothers ~ Description, data = wunifrac.mothers)
 ```
+
 ```
-pdf("PCoA pups.pdf", width = 10)
-plot_ordination(testdata.pups, ordination.pups, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
-dev.off()
+uunifrac.distance.pups<-distance(testdata.pups, "uunifrac")
+uunifrac.pups <-data.frame(sample_data(testdata.pups))
+Adonis.pups.uunifrac <- adonis(uunifrac.distance.pups ~ Description, data = uunifrac.pups)
+
+wunifrac.distance.pups<-distance(testdata.pups, "wunifrac")
+wunifrac.pups <-data.frame(sample_data(testdata.pups))
+Adonis.pups.wunifrac <- adonis(wunifrac.distance.pups ~ Description, data = wunifrac.pups)
 ```
+
 ## **Correlation**
 
 Prepare an otu_table_L6.txt using the attached [template](otu_table_L6.txt).
