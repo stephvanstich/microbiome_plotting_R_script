@@ -158,7 +158,7 @@ write.table(KW_result_mothers_pups,"KW_result_nothers and pups alpha diversity.t
 ```
 
 
-## **Beta-diverstity (PCoA plot)**
+## **Beta-diverstity (PCoA plot Unifrac weighted and unweighted)**
 
 Use raw data(testdata) or filtered data (filtertaxa100)
 ```
@@ -189,7 +189,7 @@ pdf("Wunifrac PCoA pups.pdf", width = 10)
 plot_ordination(testdata.pups, ordination.pups.wunifrac, type = "SampleID", color = "Description") + stat_ellipse(geom = "polygon", alpha = 0.2, size = 2 ,linetype =2, aes(fill = Description, color = Description)) + geom_point(size = 10) + theme(text = element_text(size=30)) + scale_color_manual( values = colors) + scale_fill_manual ( values=colors)
  dev.off()
 ```
-## **ADONIS on beta-diverstity (weighted and unweighted unifrac and PcoA)**
+## **ADONIS on beta-diverstity (weighted and unweighted unifrac)**
 ```
 uunifrac.distance.mothers<-distance(testdata.mothers, "uunifrac")
 uunifrac.mothers <-data.frame(sample_data(testdata.mothers))
